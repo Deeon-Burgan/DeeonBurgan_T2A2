@@ -1,2 +1,36 @@
-<h1>Main#index</h1>
-<p>Find me in app/views/main/index.html.erb</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Looters Exchange</title>
+</head>
+<body>
+<%= form_with url: root_path, method: :get do |form| %>
+        <%= form.label :Game %>
+        <%= form.select :Game, @games %>
+        <%= form.submit "Search" %>
+<% end %>  
+
+<% unless params[:Game].nil? %>
+<div class="content">
+    <div class='listings'>
+    <% @listings.each do |listings| %>
+        <div class="listing"></div>
+        <h3>
+            <%= listings.title %>
+        </h3>
+        <p>
+            <%= listings.description %>
+        </p>
+        <p>
+            Bids: <%= listings.bids.count %> | <%= link_to 'Details',  "/listings/#{listings.id}"%>
+        </p>
+    <% end %>
+    </div>
+</div>
+<% end %>
+
+</body>
+</html>
