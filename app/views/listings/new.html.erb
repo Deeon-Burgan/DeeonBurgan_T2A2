@@ -1,2 +1,22 @@
-<h1>Listings#new</h1>
-<p>Find me in app/views/listings/new.html.erb</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<h1>Create new entry for: <%= @game.name %></h1>
+
+<%= form_with model: @listing do |form| %>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+        <%= form.label :description %>
+        <%= form.text_field :description %>
+        <%= form.submit "Submit" %>
+<% end %> 
+    
+</body>
+</html>

@@ -14,6 +14,8 @@
 <% end %>  
 
 <% unless params[:Game].nil? %>
+<%= @game %>
+<%= @game.name %>
 <div class="content">
     <div class='listings'>
     <% @listings.each do |listings| %>
@@ -28,6 +30,9 @@
             Bids: <%= listings.bids.count %> | <%= link_to 'Details',  "/listings/#{listings.id}"%>
         </p>
     <% end %>
+    </div>
+    <div>
+        <%= link_to 'Create listing',  "/listings/#{@game.id}/new"%>
     </div>
 </div>
 <% end %>
