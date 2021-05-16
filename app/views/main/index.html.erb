@@ -32,7 +32,7 @@
     <% end %>
     </div>
     <div>
-        <%= link_to 'Create listing',  "/listings/#{@game.id}/new"%>
+        <%= link_to 'Create listing',  new_listing_path(id: @game.id)%>
     </div>
 </div>
 <% end %>

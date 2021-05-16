@@ -10,7 +10,26 @@
 
 <h1>Create new entry for: <%= @game.name %></h1>
 
-<%= form_with model: @listing do |form| %>
+<ul>
+    <% @listing.errors.full_messages do |message| %>
+    <li><%= message %></li>
+    <% end %>
+</ul>
+
+<% @listing.game_id = @game.id %>
+<ul>
+    <li>
+        <%= @listing.title %>
+    </li>
+    <li>
+        <%= @listing.description %>
+    </li>
+    <li>
+        <%= Game.find(@listing.game_id).name %>
+    </li>
+</ul>
+
+<%= form_with model: @listing, url: "/listings/#{@game.id}", local: true do |form| %>
         <%= form.label :title %>
         <%= form.text_field :title %>
         <%= form.label :description %>
