@@ -1,2 +1,39 @@
-<h1>Listings#show</h1>
-<p>Find me in app/views/listings/show.html.erb</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div class="listing-details">
+<% owned_by_current_user = current_user.id == @listing.user_id %>
+<% if current_user.id == @listing.user_id %>
+<%= link_to 'Edit', edit_listing_path%>
+<% end %>
+<h1><%= @listing.title %></h1>
+<p><%= @listing.description %></p>
+
+</div>
+
+<div class="listing-bids">
+    <h3>Bids: </h3>
+    <ul class = 'listing-bids'>
+        <% @listing.bids.each do |bid| %>
+            <li>
+                <div>
+                    <p><%= User.find(bid.user_id).email %></p>
+                    <p><%= bid.title %></p>
+                    <p><%= bid.description %></p>
+                    <% if owned_by_current_user %>
+                        <%= link_to 'Accept bid', root_path %>
+                    <% end %>
+                </div>
+            </li>
+        <% end %>
+    </ul>
+</div>
+    
+</body>
+</html>

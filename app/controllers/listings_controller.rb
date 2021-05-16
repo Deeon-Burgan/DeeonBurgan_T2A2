@@ -7,6 +7,12 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @listing = Listing.find(params[:id])
+    @game = Game.find(@listing[:game_id])
+  end
+
+  def edit
+    
   end
 
   def new
