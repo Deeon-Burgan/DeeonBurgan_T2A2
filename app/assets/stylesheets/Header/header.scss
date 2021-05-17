@@ -1,0 +1,15 @@
+.header-navigation{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#home-button{
+    justify-self: flex-start;
+}
+
+#user-links{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
