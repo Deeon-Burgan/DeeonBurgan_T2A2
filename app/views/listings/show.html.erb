@@ -8,10 +8,15 @@
 </head>
 <body>
 <div class="listing-details">
+<% if current_user.nil? %>
+<% owned_by_current_user = false %>
+<% else %>
 <% owned_by_current_user = current_user.id == @listing.user_id %>
 <% if current_user.id == @listing.user_id %>
 <%= link_to 'Edit', edit_listing_path%>
 <% end %>
+<% end %>
+<p><%= User.find(@listing.user_id).email %></p>
 <h1><%= @listing.title %></h1>
 <p><%= @listing.description %></p>
 
@@ -33,6 +38,12 @@
             </li>
         <% end %>
     </ul>
+</div>
+
+<div id="create-new-bid">
+<% unless owned_by_current_user %>
+    <%= link_to 'Make a bid',  new_bid_path(id: @listing.id)%>
+<% end %>
 </div>
     
 </body>

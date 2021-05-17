@@ -13,15 +13,16 @@
   <body>
     <nav class='header-navigation'>
     <div id="home">
-      <%= link_to "Home", root_path, id:"home-button"%>
+      <%= link_to "Home", root_path, id:"home-button", class: "btn btn-outline-primary"%>
     </div>
     <div id="user-links">
       <% if current_user.nil? %>
-      <%= link_to "Login", new_user_session_path, id:"login-button" %>
-      <%= link_to "Sign Up", new_user_registration_path, id:"signup-button"%>
+      <%= link_to "Login", new_user_session_path, id:"login-button", class:"btn btn-outline-primary" %>
+      <%= link_to "Sign Up", new_user_registration_path, id:"signup-button", class:"btn btn-outline-success"%>
       <% else %>
       <p><%= current_user.email %></p>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete, id:"logout-button"%>
+      <%= link_to "My account", show_user_path(user_id: current_user.id) %>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete, id:"logout-button", class:"btn btn-outline-danger"%>
       <% end %>
     </div>
     </nav>
