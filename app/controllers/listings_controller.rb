@@ -27,7 +27,8 @@ class ListingsController < ApplicationController
     @listing = current_user.listings.create({
       game_id: params[:game_id],
       title: params[:listing][:title],
-      description: params[:listing][:description]
+      description: params[:listing][:description],
+      images: params[:listing][:images]
     })
     if @listing.valid?
       redirect_to root_path(Game: Game.find(params[:game_id]).name)

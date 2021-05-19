@@ -7,7 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-making a thing
+<div class="listing-details">
+<h1><%= @listing.title %></h1>
+<p><%= @listing.description %></p>
+</div>
 <%= form_with model: @bid, url: "/bids/#{@listing.id}", local: true do |form| %>
         <%= form.label :title %>
         <%= form.text_field :title %>
