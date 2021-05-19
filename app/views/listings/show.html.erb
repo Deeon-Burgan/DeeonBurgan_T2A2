@@ -35,7 +35,7 @@
                     <p><%= bid.title %></p>
                     <p><%= bid.description %></p>
                     <% if owned_by_current_user %>
-                        <%= link_to 'Accept bid', root_path %>
+                        <%= link_to 'Accept bid', accept_bid_path(bid.id) %>
                     <% end %>
                 </div>
             </li>

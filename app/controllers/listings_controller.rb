@@ -1,6 +1,7 @@
 class ListingsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :edit]
+  before_action :initialize_game, only: [:show, :edit, :update, :accept_bid]
 
   def index
     
@@ -53,6 +54,20 @@ class ListingsController < ApplicationController
       puts @listing.errors.full_messages
       # render :new
     end
+  end
+
+  def initialize_game
+    @listing = Listing.find(params[:id])
+    @game = Game.find(@listing[:game_id])
+  end
+
+  def accept_bid
+    puts 'accepting bid'
+    @listing.update(status: 1)
+    @bid = Bid.find(params[:id])
+    @bid.update(status: 1)
+
+    redirect_to root_path(@game.name)
   end
 
   private

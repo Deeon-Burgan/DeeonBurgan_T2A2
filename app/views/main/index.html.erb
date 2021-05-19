@@ -19,12 +19,16 @@
 <div class="content">
     <div class='listings'>
     <% @listings.each do |listings| %>
+        <% next if listings.status == 1 %>
         <div class="listing"></div>
         <h3>
             <%= listings.title %>
         </h3>
         <p>
             <%= listings.description %>
+        </p>
+        <p>
+            Status: <%= listings.status.to_s %>
         </p>
         <p>
             Bids: <%= listings.bids.count %> | <%= link_to 'Details',  "/listings/#{listings.id}"%>
