@@ -1,0 +1,10 @@
+<h1>FORM URL GAME ID: <%= @game.id %> | <%= @listing.id %></h1>
+<%= form_with model: listing, local: true do |form| %>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+        <%= form.label :description %>
+        <%= form.text_field :description %>
+        <%= form.label :images %>
+        <%= form.file_field :images, accept: 'image/png, image/jpg, image/jpeg' %>
+        <%= form.submit "Submit" %>
+<% end %> 

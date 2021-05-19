@@ -8,7 +8,10 @@
 </head>
 <body>
 
-edit
+<h1>Update listing: <%= @listing.title %></h1>
+<p>ID: <%= @listing.id %></p>
+<p>GAME: <%= @game.id %></p>
+<%= render 'form', listing: @listing, url: update_listing_path(@listing.id) %>
     
 </body>
 </html>

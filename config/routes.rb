@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :bids
 
   get '/users/:user_id', to: 'users#show', as: 'show_user'
+  get '/listings/:listing_id', to: 'listings#show', as: 'show_listing'
   post '/listings/:game_id', to: 'listings#create'
+  post '/listings/:listing_id/edit', to: 'listings#update', as: 'update_listing'
   post '/bids/:listing_id', to: 'bids#create'
   # get '/listings/:id', to: 'listings#index', as: 'listings'
   # get '/listings/:id/new', to: 'listings#new'
