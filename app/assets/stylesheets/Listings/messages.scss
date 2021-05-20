@@ -1,0 +1,33 @@
+.message{
+    *{
+        margin: 0;
+    }
+
+    #message-user{
+        // color: #E9D758;
+    }
+
+    #message-message{
+        // color: #E9D758
+        // margin: 10px 0px;
+        padding: 10px 0px 0px 10px;
+    }
+
+    #message-time-since{
+        text-align: end;
+    }
+    display:flex;
+    flex-direction: column;
+
+    background: #A7ACD9;
+    border-radius: 15px;
+    
+    width: 50%;
+    border: 3px groove #643173;
+    margin-bottom: 5px;
+}
+
+#message-user{
+    margin: 0;
+    font-size: 12px;
+}

@@ -10,8 +10,21 @@ class ListingsController < ApplicationController
   def show
     puts 'showing'
     @listing = Listing.find(params[:id])
-    @game = Game.find(@listing[:game_id])
 
+    # if our listing is complete,
+    # we should only be able to access this page
+    # when we're logged in with an appropriate account
+    if @listing.status == 1
+      authenticate_user!
+
+      # here we check if our current user is either of the users in the trade
+      if current_user.id != @listing.user_id && current_user.id != (@listing.bids.find_by status: 1).user_id
+        # if we aren't, we redirect to root
+        redirect_to root_path
+      end
+    end
+
+    @game = Game.find(@listing[:game_id])
     @new_message = Message.new
   end
 

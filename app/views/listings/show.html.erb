@@ -31,9 +31,10 @@
     <%= bid.title %>
 
     <% @listing.messages.each do |message| %>
+    <p id='message-user'><%= message.user_id == current_user.id ? "You" : "Them" %></p>
     <div class="message">
-    <%= User.find(message.user_id).email %>
-    <p><%= message.message %></p>
+    <p id='message-message'><%= message.message %></p>
+    <p id='message-time-since'><%=  time_ago_in_words(message.created_at) %> </p>
     </div>
     <% end %>
     
