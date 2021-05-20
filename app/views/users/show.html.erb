@@ -12,7 +12,13 @@
 <ul>
 <% @user.listings.each do |listing| %>
 <div class="listing">
-    <%= link_to listing.title, "/listings/#{listing.id}" %>
+    <p>
+    <%= listing.status == 1 ? "Complete: " : "Pending: " %><%= link_to listing.title, "/listings/#{listing.id}" %>
+    <%= listing.status.to_s %>
+    <% if listing.status == 0 %>
+    <%= " Bids: " + listing.bids.length.to_s %>
+    <% end %>
+    </p>
 </div>
 <% end %>
 </ul>

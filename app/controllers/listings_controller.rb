@@ -1,7 +1,7 @@
 class ListingsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :initialize_game, only: [:show, :edit, :update, :accept_bid]
+  before_action :initialize_game, only: [:show, :edit, :update]
 
   def index
     
@@ -46,7 +46,8 @@ class ListingsController < ApplicationController
       game_id: params[:game_id],
       title: params[:listing][:title],
       description: params[:listing][:description],
-      images: params[:listing][:images]
+      images: params[:listing][:images],
+      status: 0
     })
     if @listing.valid?
       redirect_to root_path(Game: Game.find(params[:game_id]).name)
@@ -63,8 +64,10 @@ class ListingsController < ApplicationController
 
   def accept_bid
     puts 'accepting bid'
-    @listing.update(status: 1)
     @bid = Bid.find(params[:id])
+    @listing = Listing.find(@bid.listing_id)
+    @game = Game.find(@listing.game_id)
+    @listing.update(status: 1)
     @bid.update(status: 1)
 
     redirect_to root_path(@game.name)

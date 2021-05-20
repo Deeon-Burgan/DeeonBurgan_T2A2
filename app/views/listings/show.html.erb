@@ -25,6 +25,11 @@
 <% end %>
 </div>
 
+<% if @listing.status == 1 %>
+    <h3>winning bid: </h3>
+    <% bid = Bid.find_by status: 1 %>
+    <%= bid.title %>
+<% else %>
 <div class="listing-bids">
     <h3>Bids: </h3>
     <ul class = 'listing-bids'>
@@ -42,6 +47,7 @@
         <% end %>
     </ul>
 </div>
+<% end %>
 
 <div id="create-new-bid">
 <% unless owned_by_current_user %>
