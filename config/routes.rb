@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'main#index'
   resources :listings
   resources :bids
+  resources :messages
 
   get '/users/:user_id', to: 'users#show', as: 'show_user'
   get '/listings/:listing_id', to: 'listings#show', as: 'show_listing'

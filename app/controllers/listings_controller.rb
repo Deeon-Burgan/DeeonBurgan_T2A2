@@ -11,6 +11,8 @@ class ListingsController < ApplicationController
     puts 'showing'
     @listing = Listing.find(params[:id])
     @game = Game.find(@listing[:game_id])
+
+    @new_message = Message.new
   end
 
   def edit

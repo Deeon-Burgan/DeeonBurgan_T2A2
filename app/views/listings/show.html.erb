@@ -29,6 +29,23 @@
     <h3>winning bid: </h3>
     <% bid = Bid.find_by status: 1 %>
     <%= bid.title %>
+
+    <% @listing.messages.each do |message| %>
+    <div class="message">
+    <%= User.find(message.user_id).email %>
+    <p><%= message.message %></p>
+    </div>
+    <% end %>
+    
+    <%= form_with model: @new_message, user_id: current_user.id, listing_id: @listing.id, local: true do |form| %>
+        <%= form.label :message %>
+        <%= form.text_field :message %>
+        <%= form.hidden_field 'user_id', value: current_user.id %>
+        <%= form.hidden_field 'listing_id', value: @listing.id %>
+        <%= form.submit "Submit" %>
+    <% end %> 
+
+    <%#= @listing.messages.count %>
 <% else %>
 <div class="listing-bids">
     <h3>Bids: </h3>
