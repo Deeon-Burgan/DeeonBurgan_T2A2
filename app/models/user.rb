@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_many :listings, :dependent => :destroy
   has_many :bids, :dependent => :destroy
+  has_many :messages, :dependent => :destroy
 end

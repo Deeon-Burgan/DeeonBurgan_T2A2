@@ -7,20 +7,20 @@
     <title>Looters Exchange</title>
 </head>
 <body>
-<%= form_with url: root_path, method: :get do |form| %>
+<div class="container">
+<%= form_with url: root_path, id:'select-game-form', method: :get do |form| %>
         <%= form.label :Game %>
         <%= form.select :Game, @games %>
         <%= form.submit "Search" %>
 <% end %>  
 
 <% unless params[:Game].nil? %>
-<%= @game %>
-<%= @game.name %>
+<h1 class="game-title"><%= @game.name %></h1>
 <div class="content">
     <div class='listings'>
     <% @listings.each do |listings| %>
         <% next if listings.status == 1 %>
-        <div class="listing"></div>
+        <div class="listing">
         <h3>
             <%= listings.title %>
         </h3>
@@ -33,6 +33,7 @@
         <p>
             Bids: <%= listings.bids.count %> | <%= link_to 'Details',  "/listings/#{listings.id}"%>
         </p>
+        </div>
     <% end %>
     </div>
     <div>
@@ -40,6 +41,7 @@
     </div>
 </div>
 <% end %>
+</div>
 
 </body>
 </html>

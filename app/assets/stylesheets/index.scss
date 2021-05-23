@@ -1,0 +1,43 @@
+$listing-background-color: white;
+$listing-border-color: grey;
+$listing-text-color: black;
+
+
+@mixin flex-column-centered{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.game-title{
+    text-align: center;
+}
+
+.listings{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+    .listing{
+        background: rgb(248, 170, 248);
+        border-radius: 10px;
+        border: 5px solid $listing-border-color;
+
+        width: 75%;
+        margin-bottom: 5px;
+
+        @include flex-column-centered();
+    }
+}
+
+.container{
+    @include flex-column-centered();
+}
+
+.content{
+    width: 75%;
+}
+
+#select-game-form{
+
+}

@@ -15,13 +15,16 @@
     <div id="home">
       <%= link_to "Home", root_path, id:"home-button", class: "btn btn-outline-primary"%>
     </div>
+
+    <h1>Looters Exchange</h1>
+
     <div id="user-links">
       <% if current_user.nil? %>
       <%= link_to "Login", new_user_session_path, id:"login-button", class:"btn btn-outline-primary" %>
       <%= link_to "Sign Up", new_user_registration_path, id:"signup-button", class:"btn btn-outline-success"%>
       <% else %>
-      <p><%= current_user.email %></p>
-      <%= link_to "My account", show_user_path(user_id: current_user.id) %>
+      <p id="user-email"><%= current_user.email %></p>
+      <%= link_to "My account", show_user_path(user_id: current_user.id), id:"my-account-button", class:"btn btn-outline-info" %>
       <%= link_to "Logout", destroy_user_session_path, method: :delete, id:"logout-button", class:"btn btn-outline-danger"%>
       <% end %>
     </div>
