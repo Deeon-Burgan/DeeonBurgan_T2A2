@@ -14,9 +14,9 @@
     <nav class='header-navigation'>
     <div id="home">
       <%= link_to "Home", root_path, id:"home-button", class: "btn btn-outline-primary"%>
+      <p id="site-title">Looters Exchange</p>
     </div>
 
-    <h1>Looters Exchange</h1>
 
     <div id="user-links">
       <% if current_user.nil? %>

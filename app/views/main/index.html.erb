@@ -27,9 +27,10 @@
         <p>
             <%= listings.description %>
         </p>
-        <p>
+        <!--<p>
             Status: <%= listings.status.to_s %>
         </p>
+        -->
         <p>
             Bids: <%= listings.bids.count %> | <%= link_to 'Details',  "/listings/#{listings.id}"%>
         </p>
@@ -40,6 +41,8 @@
         <%= link_to 'Create listing',  new_listing_path(id: @game.id)%>
     </div>
 </div>
+<% else %>
+<h1>BLOOP</h1>
 <% end %>
 </div>
 
