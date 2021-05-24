@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Looters Exchange</title>
 </head>
-<body>
-<div class="container">
+<body id='index-body'>
+<div class="container-fluid">
 <%= form_with url: root_path, id:'select-game-form', method: :get do |form| %>
-        <%= form.label :Game %>
-        <%= form.select :Game, @games %>
-        <%= form.submit "Search" %>
+        <%= form.label :Game, class:'form-label' %>
+        <%= form.select :Game, @games, class:"form-select form-select-lg mb-3" %>
+        <%= form.submit "Search", class:"btn btn-primary mb-3" %>
 <% end %>  
 
 <% unless params[:Game].nil? %>
@@ -42,7 +42,8 @@
     </div>
 </div>
 <% else %>
-<h1>BLOOP</h1>
+<h1>Looters Exchange</h1>
+<p>An item trading marketplace without borders</p>
 <% end %>
 </div>
 

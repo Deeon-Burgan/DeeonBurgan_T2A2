@@ -15,5 +15,18 @@ class UsersController < ApplicationController
     if(current_user != @user)
       redirect_to root_path
     end
+
+    @game = Game.new
+  end
+
+  def create_game
+    Game.create(game_params)
+    redirect_to root_path
+  end
+
+  private 
+
+  def game_params
+    params.require(:game).permit(:name, :description)
   end
 end

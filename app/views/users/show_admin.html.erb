@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<h1>Admin Resources:</h1>
+
+<!-- I want this area to be game entry -->
+<br>
+<h3>Create a new game:</h3>
+<%= form_for @game, as: :game do |form| %>
+<%= form.label :name %>
+<%= form.text_field :name %>
+<%= form.label :description %>
+<%= form.text_field :description %>
+<%= form.submit %>
+<% end %>
+
+<!-- Make another user admin -->
+
+<!-- I want this area to be site monitoring -->
+    <!-- This is something I can wonder about after handing in the assignment -->
+</body>
+</html>

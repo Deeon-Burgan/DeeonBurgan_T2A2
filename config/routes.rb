@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   post '/bids/:listing_id', to: 'bids#create'
   get '/listings/accept_bid/:id', to: 'listings#accept_bid', as: 'accept_bid'
   get '/users/admin/:user_id', to: 'users#show_admin', as: 'show_admin'
+
+  # ADMIN SETUP
+    # Route for games creation
+    post '/users/admin/create/game/', to: 'users#create_game', as: 'games'
   # get '/listings/:id', to: 'listings#index', as: 'listings'
   # get '/listings/:id/new', to: 'listings#new'
   # post '/listings/:id/new', to: 'listings#create'
