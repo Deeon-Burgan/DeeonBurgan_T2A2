@@ -60,3 +60,5 @@ gem "devise", "~> 4.8"
 gem "bootstrap", "~> 5.0"
 
 gem "jquery-rails", "~> 4.4"
+
+gem "rest-client", "~> 2.1"
