@@ -12,8 +12,7 @@ Rails.application.routes.draw do
   post '/listings/:listing_id/edit', to: 'listings#update', as: 'update_listing'
   post '/bids/:listing_id', to: 'bids#create'
   get '/listings/accept_bid/:id', to: 'listings#accept_bid', as: 'accept_bid'
-
-  get 'root', to: 'main#send_simple_message', as: 'send_email'
+  get '/users/admin/:user_id', to: 'users#show_admin', as: 'show_admin'
   # get '/listings/:id', to: 'listings#index', as: 'listings'
   # get '/listings/:id/new', to: 'listings#new'
   # post '/listings/:id/new', to: 'listings#create'

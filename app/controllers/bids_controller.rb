@@ -17,7 +17,7 @@ class BidsController < ApplicationController
       @listing = Listing.find(params[:listing_id])
       @user = User.find(@listing.user_id)
       send_new_bid_email(@user, @bid)
-      
+
       redirect_to "/listings/#{params[:listing_id]}"
     else
       puts @bid.errors.full_messages
@@ -30,9 +30,9 @@ class BidsController < ApplicationController
   end
 
   def send_new_bid_email(user, bid)
-    RestClient.post "https://api:e40164ae8415199ccc60c52dfe69ca51-6ae2ecad-9f7a429c"\
-    "@api.mailgun.net/v3/sandboxcbc35ff313e64215b6f6548e143339fb.mailgun.org/messages",
-    :from => "mailgun@sandboxcbc35ff313e64215b6f6548e143339fb.mailgun.org",
+    RestClient.post "https://api:7afa5c1ad7dcc3a280e2f2c6a1a433bf-fa6e84b7-2e0a36d8"\
+    "@api.mailgun.net/v3/deeonburgan.me/messages",
+    :from => "mailer@deeonburgan.me",
     :to => user.email,
     :subject => "Your listing has a new bid: " + bid.title,
     :text => bid.description
