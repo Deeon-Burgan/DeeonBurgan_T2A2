@@ -11,12 +11,15 @@ class BidsController < ApplicationController
     @bid = current_user.bids.create({
       listing_id: params[:listing_id],
       title: params[:bid][:title],
-      description: params[:bid][:description]
+      description: params[:bid][:description], 
+      status: 0
     })
     if @bid.valid?
       @listing = Listing.find(params[:listing_id])
       @user = User.find(@listing.user_id)
-      send_new_bid_email(@user, @bid)
+
+      # THIS DOES WORK BUT MY ACCOUNT IS CURRENTLY LOCKED, SO IT DOESN'T 
+      # send_new_bid_email(@user, @bid)
 
       redirect_to "/listings/#{params[:listing_id]}"
     else
@@ -39,6 +42,7 @@ class BidsController < ApplicationController
   end
 
   private
+
   def bid_params
     params.require(:bid).permit(:title, :description, :listing_id)
   end

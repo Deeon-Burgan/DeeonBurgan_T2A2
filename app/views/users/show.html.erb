@@ -7,36 +7,28 @@
     <title>Document</title>
 </head>
 <body>
-<h1><%= @user.email %></h1>
-<h3>My Listings: </h3>
-<ul>
+<div class="user-container">
+<h3 class="user-title">My Listings: </h3>
+<ul class='listing-list'>
 <% @user.listings.each do |listing| %>
 <div class="listing">
-    <p>
-    <%= listing.status == 1 ? "Complete: " : "Pending: " %><%= link_to listing.title, "/listings/#{listing.id}" %>
-    <%#= listing.status.to_s %>
-    <% if listing.status == 0 %>
-    <%= " Bids: " + listing.bids.length.to_s %>
-    <% end %>
-    </p>
+    <h5 class='listing-title'><%= listing.title %></h5>
+    <p class="status"><%= listing.status == 1 ? "Complete" : "Bids: " + listing.bids.length.to_s %></p>
+    <p class="details"><%= link_to 'Details', "/listings/#{listing.id}" %></p>
 </div>
 <% end %>
 </ul>
 
 <h3>My Bids: </h3>
-<ul>
+<ul class='listing-list'>
 <% @user.bids.each do |bid| %>
-<div class="bid">
-    <p>
-    <%= bid.status == 0 ? "Pending" : "Accepted" %>: 
-    <%= bid.title %>
-    <%= link_to 'see listing', "/listings/#{bid.listing_id}" %>
-    </p>
-    <% if bid.status == 1 %>
-        <p>You can contact the user here: <%= User.find(Listing.find(bid.listing_id).user_id).email %></p>
-    <% end %>
+<div class="listing">
+    <h5 class="listing-title"><%= bid.title %></h5>
+    <p class="status"><%= bid.status == 1 ? "Accepted" : "Pending" %></p>
+    <p class="details"><%= link_to 'Details', "/listings/#{bid.listing.id}" %></p>
 </div>
 <% end %>
 </ul>
+</div>
 </body>
 </html>

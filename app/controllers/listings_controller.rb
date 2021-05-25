@@ -68,7 +68,7 @@ class ListingsController < ApplicationController
       redirect_to root_path(Game: Game.find(params[:game_id]).name)
     else
       puts @listing.errors.full_messages
-      # render :new
+      redirect_to new_listing_path(id: params[:game_id])
     end
   end
 
