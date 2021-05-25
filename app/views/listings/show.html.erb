@@ -1,77 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-<div class="listing-details">
-<% if current_user.nil? %>
-<% owned_by_current_user = false %>
-<% else %>
-<% owned_by_current_user = current_user.id == @listing.user_id %>
-<% if current_user.id == @listing.user_id %>
-<%= link_to 'Edit', edit_listing_path%>
-<% end %>
-<% end %>
-<p><%= User.find(@listing.user_id).email %></p>
-<h1><%= @listing.title %></h1>
-<p><%= @listing.description %></p>
-<%# puts 'listings = ' + @listing.images.length.to_s %>
-<% unless @listing.images.length == 0 %>
-    <%= image_tag @listing.images.first, alt: 'Pic of item' %>
-<% end %>
-</div>
-
-<% if @listing.status == 1 %>
-    <h3>winning bid: </h3>
-    <% bid = Bid.find_by status: 1 %>
-    <%= bid.title %>
-
-    <% @listing.messages.each do |message| %>
-    <p id='message-user'><%= message.user_id == current_user.id ? "You" : "Them" %></p>
-    <div class="message">
-    <p id='message-message'><%= message.message %></p>
-    <p id='message-time-since'><%=  time_ago_in_words(message.created_at) %> </p>
-    </div>
-    <% end %>
-    
-    <%= form_with model: @new_message, user_id: current_user.id, listing_id: @listing.id, local: true do |form| %>
-        <%= form.label :message %>
-        <%= form.text_field :message %>
-        <%= form.hidden_field 'user_id', value: current_user.id %>
-        <%= form.hidden_field 'listing_id', value: @listing.id %>
-        <%= form.submit "Submit" %>
-    <% end %> 
-
-    <%#= @listing.messages.count %>
-<% else %>
-<div class="listing-bids">
-    <h3>Bids: </h3>
-    <ul class = 'listing-bids'>
-        <% @listing.bids.each do |bid| %>
-            <li>
-                <div>
-                    <p><%= User.find(bid.user_id).email %></p>
-                    <p><%= bid.title %></p>
-                    <p><%= bid.description %></p>
-                    <% if owned_by_current_user %>
-                        <%= link_to 'Accept bid', accept_bid_path(bid.id) %>
-                    <% end %>
-                </div>
-            </li>
+  </head>
+  <body>
+    <div class="px-2 py-0 mx-5 mt-5", id='body-div'>
+      <div class="listing-details">
+        <% if current_user.nil? %>
+          <% owned_by_current_user = false %>
+        <% else %>
+          <% owned_by_current_user = current_user.id == @listing.user_id %>
+          <% if current_user.id == @listing.user_id %>
+            <%= link_to 'Edit', edit_listing_path%>
+          <% end %>
         <% end %>
-    </ul>
-</div>
-<% end %>
-
-<div id="create-new-bid">
-<% unless owned_by_current_user %>
-    <%= link_to 'Make a bid',  new_bid_path(id: @listing.id)%>
-<% end %>
-</div>
-    
-</body>
+        <%#= User.find(@listing.user_id).email %>
+        <h1><%= @listing.title %></h1>
+        <p><%= @listing.description %></p>
+        <%# puts 'listings = ' + @listing.images.length.to_s %>
+        <% unless @listing.images.length == 0 %>
+          <%= image_tag @listing.images.first, alt: 'Pic of item' %>
+        <% end %>
+      </div>
+      <% if @listing.status == 1 %>
+        <h3>winning bid: </h3>
+        <% bid = Bid.find_by status: 1 %>
+        <%= bid.title %>
+        <% @listing.messages.each do |message| %>
+          <p id='message-user'><%= message.user_id == current_user.id ? "You" : "Them" %></p>
+          <div class="message">
+            <p id='message-message'><%= message.message %></p>
+            <p id='message-time-since'><%=  time_ago_in_words(message.created_at) %> </p>
+          </div>
+        <% end %>
+        <%= form_with model: @new_message, user_id: current_user.id, listing_id: @listing.id, local: true do |form| %>
+          <%= form.label :message %>
+          <%= form.text_field :message %>
+          <%= form.hidden_field 'user_id', value: current_user.id %>
+          <%= form.hidden_field 'listing_id', value: @listing.id %>
+          <%= form.submit "Submit" %>
+        <% end %>
+        <%#= @listing.messages.count %>
+      <% else %>
+        <div class="bids-container">
+          <h3>Bids: </h3>
+          <ul class = 'listing-bids'>
+            <% @listing.bids.each do |bid| %>
+              <li>
+                <div class='listing-bid'>
+                  <%#= User.find(bid.user_id).email %>
+                  <p><%= bid.title %></p>
+                  <p><%= bid.description %></p>
+                  <% if owned_by_current_user %>
+                    <%= link_to 'Accept bid', accept_bid_path(bid.id), id:"accept-bid" %>
+                  <% end %>
+                </div>
+              </li>
+            <% end %>
+          </ul>
+      <% end %>
+      <div id="create-new-bid">
+        <% unless owned_by_current_user %>
+          <%= link_to 'Make a bid',  new_bid_path(id: @listing.id)%>
+        <% end %>
+      </div>
+        </div>
+    </div>
+  </body>
 </html>

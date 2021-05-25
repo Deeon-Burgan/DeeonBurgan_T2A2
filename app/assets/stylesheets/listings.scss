@@ -1,3 +1,57 @@
 // Place all the styles related to the Listings controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+@import './index.scss';
+
+.listing-details{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bids-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.listing-bids{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 75%;
+
+    li{
+        width: 100%;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+
+        p{
+            text-align:center;
+        }
+    }
+
+    list-style-type: none;
+}
+
+.listing-bid{
+
+    width: 50%;
+    background: $grey;
+    border-radius: 10px;
+    border: 5px solid $blue;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin: 0;
+    padding: 0;
+
+}
+
+#body-div{
+    // display:flex;
+    //     flex-direction: column;
+    //     align-items: center;
+}
