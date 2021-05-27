@@ -1,14 +1,21 @@
 class ListingsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :edit]
+  before_action :checking_id
   before_action :initialize_game, only: [:show, :edit, :update]
 
   def index
     
   end
 
+  def checking_id
+    if params[:id].to_i > Listing.all.length - 1
+      redirect_to root_path
+    end
+  end
+
   def show
-    puts 'showing'
+    checking_id()
     @listing = Listing.find(params[:id])
 
     # if our listing is complete,
@@ -29,17 +36,13 @@ class ListingsController < ApplicationController
   end
 
   def edit
-    puts 'editing'
     @listing = Listing.find(params[:id])
     @game = Game.find(@listing[:game_id])
   end
 
   def update
-    puts 'im updating'
     @listing = Listing.find(params[:id])
     @game = Game.find(@listing[:game_id])
-    puts @listing.title
-    puts @game.id.to_s
     if @listing.update(listing_params)
       redirect_to show_listing_path(@listing.id)
     else
@@ -50,7 +53,6 @@ class ListingsController < ApplicationController
   def new
     @game = Game.find(params[:id])
     @listing = Listing.new
-    puts "i created a new listing: " + @listing.nil?.to_s
   end
 
   def create

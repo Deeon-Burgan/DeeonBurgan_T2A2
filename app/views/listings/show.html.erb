@@ -25,10 +25,12 @@
           <%= image_tag @listing.images.first, alt: 'Pic of item' %>
         <% end %>
       </div>
+      <%# HERE IM DOING A CHECK TO SEE IF THE CURRENT LISTING HAS PROCEEDED TO COMPLETE %>
       <% if @listing.status == 1 %>
         <h3>winning bid: </h3>
         <% bid = Bid.find_by status: 1 %>
         <%= bid.title %>
+        <%# HERE IM MAPPING THE MESSAGES OF THE CURRENT LISTING %>
         <% @listing.messages.each do |message| %>
           <p id='message-user'><%= message.user_id == current_user.id ? "You" : "Them" %></p>
           <div class="message">
@@ -36,6 +38,7 @@
             <p id='message-time-since'><%=  time_ago_in_words(message.created_at) %> </p>
           </div>
         <% end %>
+        <%# HERE IS THE FORM TO CREATE A NEW MESSAGE %>
         <%= form_with model: @new_message, user_id: current_user.id, listing_id: @listing.id, local: true do |form| %>
           <%= form.label :message %>
           <%= form.text_field :message %>
@@ -43,8 +46,10 @@
           <%= form.hidden_field 'listing_id', value: @listing.id %>
           <%= form.submit "Submit" %>
         <% end %>
-        <%#= @listing.messages.count %>
+      <%# IF THIS LISTING HASN'T PROCEEDED TO COMPLETE %>
       <% else %>
+      <%# if we haven't completed this listing yet %>
+      <%# we want to display the bids %>
         <div class="bids-container">
           <h3>Bids: </h3>
           <ul class = 'listing-bids'>
@@ -62,6 +67,7 @@
             <% end %>
           </ul>
       <% end %>
+      <%# give the option to create a new bid %>
       <div id="create-new-bid">
         <% unless owned_by_current_user %>
           <%= link_to 'Make a bid',  new_bid_path(id: @listing.id)%>
