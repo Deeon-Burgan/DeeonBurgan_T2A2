@@ -62,3 +62,5 @@ gem "bootstrap", "~> 5.0"
 gem "jquery-rails", "~> 4.4"
 
 gem "rest-client", "~> 2.1"
+
+gem "aws-sdk-s3", "~> 1.95"
