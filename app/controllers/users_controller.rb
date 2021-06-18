@@ -34,9 +34,15 @@ class UsersController < ApplicationController
   end
 
   def check_id
-    if params[:user_id].to_i > User.all.length - 1
+    unless User.exists?(params[:user_id].to_i)
       redirect_to root_path
     end
+    if current_user != User.find(params[:user_id])
+      redirect_to root_path
+    end
+    # if params[:user_id].to_i > User.all.length - 1
+    #   redirect_to root_path
+    # end
   end
 
   private 
