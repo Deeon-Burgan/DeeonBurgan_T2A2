@@ -1,7 +1,8 @@
 class ListingsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :checking_id
+  before_action :checking_id, only: [:show, :edit, :update]
+  before_action :check_bid_id, only: [:accept_bid]
   before_action :initialize_game, only: [:show, :edit, :update]
 
   def index
@@ -13,6 +14,13 @@ class ListingsController < ApplicationController
     #   redirect_to root_path
     # end
     unless Listing.exists?(params[:id].to_i)
+      redirect_to root_path
+    end
+  end
+
+  def check_bid_id
+    unless Bid.exists?(params[:id].to_i)
+      puts "ID: #{params[:id]}, doesn't exist"
       redirect_to root_path
     end
   end
