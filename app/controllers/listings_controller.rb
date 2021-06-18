@@ -9,7 +9,10 @@ class ListingsController < ApplicationController
   end
 
   def checking_id
-    if params[:id].to_i > Listing.all.length - 1
+    # if params[:id].to_i > Listing.all.length - 1
+    #   redirect_to root_path
+    # end
+    unless Listing.exists?(params[:id].to_i)
       redirect_to root_path
     end
   end
